@@ -1,5 +1,7 @@
-const weapons = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
-
+const weapons = ["rock", "paper", "scissors", "lizard", "spock"]
+let compScore = 0
+let playerScore = 0
+let round = 0
 game()
 
 function computerSelection(){
@@ -7,20 +9,30 @@ function computerSelection(){
 }
 
 function playerSelection(){
-    return window.prompt("Choose your weapon!", "Rock")
+
+    let playerAns = window.prompt("Choose your weapon! Your options are: Rock, Paper, Scissors, Lizard, Spock. ", "Rock").toLowerCase()
+    console.log(playerAns)
+    if (!weapons.includes(playerAns)) {
+        console.log("hi")
+        while (!weapons.includes(playerAns)) {
+            playerAns = window.prompt("Please enter a valid weapon. Your options are: Rock, Paper, Scissors, Lizard, Spock. ", "Rock").toLowerCase()
+        }
+    }
+
+    return playerAns
 }
 
 function game(){
+
     let player = playerSelection()
     let comp = computerSelection()
     let result = playRound(player, comp)
-    msg = `You picked: ${player}. \n Computer picked: ${comp}. \n ${result}`
+    msg = `****** Round You picked: ${player}. \n Computer picked: ${comp}. \n ${result}`
     alert(msg)
 }
 
 //Returns String declaring outcome of the game.
 function playRound(playerInput, computerInput) {
-    playerInput = playerInput.toLowerCase()
     computerInput = computerInput.toLowerCase()
     if (playerInput == "rock") {
         if (computerInput == "lizard")

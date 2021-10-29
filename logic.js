@@ -1,7 +1,4 @@
 const weapons = ["rock", "paper", "scissors", "lizard", "spock"]
-let compScore = 0
-let playerScore = 0
-let round = 0
 game()
 
 function computerSelection(){
@@ -24,11 +21,22 @@ function playerSelection(){
 
 function game(){
 
-    let player = playerSelection()
-    let comp = computerSelection()
-    let result = playRound(player, comp)
-    msg = `****** Round You picked: ${player}. \n Computer picked: ${comp}. \n ${result}`
-    alert(msg)
+    let compScore = 0
+    let playerScore = 0
+
+    for (let i = 1; i < 6; i++) {
+        let player = playerSelection()
+        let comp = computerSelection()
+        let result = playRound(player, comp)
+        if (result[4] == "w")
+            playerScore++
+        else compScore++
+        
+        msg = `****** Round ${i} ****** \n You picked: ${player}. \n Computer picked: ${comp}. \n ${result}`
+        alert(msg)
+    }
+
+    alert(`****** Final Score ****** \n You: ${playerScore} \n Computer: ${compScore} \n ${playerScore > compScore ? "You win!" : "You lose!"}`)
 }
 
 //Returns String declaring outcome of the game.
